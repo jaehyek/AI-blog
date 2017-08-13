@@ -17,10 +17,17 @@ from keras.models import *
 from keras.layers import *
 from keras import backend as K
 
-#-- constants
-ENV = 'CartPole-v0'
+gym.envs.register(
+    id='CartPole-v2',
+    entry_point='gym.envs.classic_control:CartPoleEnv',
+    tags={'wrapper_config.TimeLimit.max_episode_steps': 2000},
+    reward_threshold=4750.0,
+)
 
-RUN_TIME = 30
+#-- constants
+ENV = 'CartPole-v2'
+
+RUN_TIME = 300
 THREADS = 8
 OPTIMIZERS = 2
 THREAD_DELAY = 0.001
